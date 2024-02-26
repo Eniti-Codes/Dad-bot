@@ -250,7 +250,7 @@ client.on('message', message => {
 
 
 
-client.login("MTA4NjgxMjc3OTc0NDMzMzg5NQ.GS1N5i.9KTQYg3TbjEG1kW8glD_1xNuCgDo0HzZK-vb4s");
+client.login("");
 //client.login(process.env.Token);
 client.on('ready', () => {
 console.log(`Key is accepted now running the bot!`);
