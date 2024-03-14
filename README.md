@@ -1,2 +1,48 @@
 # Dad-bot
-Built with JavaScript and Node.js, this bot is the perfect addition for any Discord community.
+Daniel Dad: A Fun and Engaging Discord Bot
+Daniel Dad is a lightweight Discord bot that injects some humor and lighthearted fun into your server!
+Features:
+ 
+
+    Dad Jokes: Tell hilarious (or groan-worthy) dad jokes with the ,dad` command.
+    * Riddles: Challenge your server members with mind-bending riddles using the ,dadpuzzle` command.
+
+Getting Started:
+ 
+
+    Clone the Repository:
+     git clone [https://github.com/your-username/hazel-mom-bot.git](https://github.com/Streamer-devs/Dad-bot.git)
+
+
+ 
+
+    Install Dependencies:
+     Navigate to the cloned directory and run:
+     npm install
+
+
+ 
+     WIP
+    "Create a .env File:
+     Create a file named .env in the root directory. This file will store your bot token and other sensitive environment variables.
+        Add your Bot Token:
+        Inside your .env file, add a line:
+        BOT_TOKEN=your_bot_token_here
+
+
+   Important: Replace your_bot_token_here with your actual Discord bot token. Never commit the .env file to version control."
+ 
+
+    Run the Bot:
+     node index.js
+
+
+Additional Notes:
+ 
+
+    You'll need the "Manage Server" permission to add Daniel Dad to your Discord server.
+        For more information on creating Discord bots, refer to the official Discord.js documentation: https://discordjs.guide/
+
+Feel free to contribute!
+We welcome contributions to improve Daniel Dad's features and functionality.
+This description outlines the bot's features, installation instructions, and includes environment variable setup. It also highlights the need for the "Manage Server" permission and provides a link to the Discord.js documentation for further learning.
