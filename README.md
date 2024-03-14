@@ -42,6 +42,7 @@ Additional Notes:
 
     You'll need the "Manage Server" permission to add Daniel Dad to your Discord server.
         For more information on creating Discord bots, refer to the official Discord.js documentation: https://discordjs.guide/
+        and The version of Discord JS it uses is 11.4.2 looking to upgrade version 14.14.1
 
 Feel free to contribute!
 We welcome contributions to improve Daniel Dad's features and functionality.
