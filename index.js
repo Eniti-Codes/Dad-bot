@@ -8,6 +8,56 @@ client.on('ready', () => {
 
 
 
+let isSharedFunctionalityEnabled = false; // Now disabled by default
+
+client.on('message', async (message) => {
+  if (message.author.bot) return;
+
+  // Check for enable/disable commands (adjust prefix as needed)
+  if (message.content.startsWith(',enable')) {
+    isSharedFunctionalityEnabled = true;
+    await message.channel.send('Shared functionality enabled!');
+    return;
+  } else if (message.content.startsWith(',disable')) {
+    isSharedFunctionalityEnabled = false;
+    await message.channel.send('Shared functionality disabled!');
+    return;
+  }
+
+  // Conditionally execute shared functionality code
+  if (isSharedFunctionalityEnabled) {
+    // List of messages to check for
+    const messagesToCheck = [
+      {words: ['fuck', 'shit', 'kill', 'screw', 'dmn', 'jesus christ', 'bastard', 'whore', 'gyatt', 'circumcised','obese', 'self harm', 'suicide', 'stabbed', 'death', 'skinned', 'heart attack', 'suffocate'], reply: `Woah now, champ! Did someone forget their manners? Let's clean up the language a bit, shall we?`},
+      {words: ['slut', 'meesex', 'pussy hot', 'rizz', 'sigma', 'mewing', 'wick the dick', 'shitfire', 'cuntuccino', 'fatty', 'fat', 'dead', 'stroke'], reply: `Woah now, champ! Did someone forget their manners? Let's clean up the language a bit, shall we?`},
+      {words: ['farther gamer', 'justin', 'alex', 'trinity','whale', 'freak', 'hoe', 'burned', 'inhumane', 'buried', 'rot', 'hell'], reply: `Woah now, champ! Did someone forget their manners? Let's clean up the language a bit, shall we?`},
+      {words: ['xd'], reply: '🤣'},
+      {words: ['oops'], reply: `I don't know what happened either!`},
+      {words: ['sorry'], reply: 'No worries champ!'},
+      {words: ['goodnight'], reply: 'Sleep tight and sweet dreams! 🌙'},
+      {words: ['hug'], reply: 'Sending you a virtual hug! 🤗'},
+      {words: ['please'], reply: `No champ you can't have it`},
+      {words: ['website'], reply: `https://links.net/`},
+      {words: ['grammar'], reply: `Here's your grammy lesson kids! https://www.grammarly.com/`},
+      {words: ['eepy'], reply: `Are you tired? Do you want a bedtime story champ?`},
+      // Add more message-reply pairs here
+    ];
+
+    for (const messageToCheck of messagesToCheck) {
+      if (
+        messageToCheck.words.some(
+          (word) => message.content.toLowerCase().includes(word)
+        ) &&
+        (Date.now() - lastReplyTime) > 10000
+      ) {
+        await message.reply(messageToCheck.reply);
+        lastReplyTime = Date.now();
+        break;
+      }
+    }
+  }
+});
+
 
 
 
@@ -15,9 +65,15 @@ client.on('ready', () => {
 client.on('message', message => {
   // Here is where you need to code
  if(message.content == ",info") {
-    message.channel.send(`Introducing Daniel Dad, With a seemingly endless supply of dad jokes and snappy comebacks, Daniel Dad is sure to keep your server members entertained. And the best part? Daniel Dad is available for anyone to invite to their own server! Simply check out the bot's profile for the invite link. 
+    message.channel.send(`__Daniel Dad bot, works seamlessly alongside Hazel Mom bot to create a delightful and balanced experience for your server. They make a perfect duo!__
+    Here's what I can do for you:
+    :star: Tell you hilarious Dad jokes (,dad).
+    :star: Challenge you with riddles (,dadpuzzle).
+    :star: Shared functionality pretty much says what's on the tin. It shares the functionality of the other bot meaning everything the other bot did you get with this command enabled! Remember it does reset When the bots restart!. These bots are made to run independent of each other.
 
-But we're not just here for the laughs - if you encounter any issues with the bot, please let us know! Head over to bots description to report the problem and our team will do their best to resolve any issues. We're committed to making sure Daniel Dad runs smoothly and provides the best possible experience for all of our users.`);
+__Note: You'll need the "Manage Server" permission to activate shared functionality.__
+Both Hazel Mom and Daniel Dad are open-source bots, meaning their code is publicly available for anyone to inspect or modify. This ensures transparency and allows for community contributions.
+Feel free to invite them to your server and discover the fun they bring! You can invite them by clicking on their profile picture and selecting "Add to Server".`);
  }
 
   if(message.content == ",responses") {
@@ -104,6 +160,8 @@ client.on('message', message => {
   __2__. __,info__ - "information if you didn't know what it was"
   __3__ __,dadpuzzle__ - "You can solve a dad puzzle"
   __4__ __,responses__ - "list of all the words I will respond to"
+  __5__ __,enable__ - "activates shared functionality"
+  __6__ __,disable__ - "deactivates shared functionality"
   **My prefix is ,**`)
   return
 }
@@ -111,8 +169,6 @@ client.on('message', message => {
 
 // Keep track of last reply time to avoid spamming
 let lastReplyTime = 0;
-
-
 
 client.on('message', async message => {
   if (message.author.bot) return;
@@ -133,6 +189,9 @@ client.on('message', async message => {
     {words: ['monkey'], reply: '🐵'},
     {words: ['farther gamer'], reply: `If you mention Pinocchio nose one more time, he's going to sniff you up!!`},
     {words: ['shot', 'shoot'], reply: `Bud, you don't even know how to shoot a gun! You shouldn't be talking like that!`},
+    {words: ['dad!'], reply: `Yes champ!`},
+    {words: ['awful'], reply: `Hey there champ, chin up! What's got you feeling down today?`},
+    {words: ['great'], reply: `Fantastic news! There's nothin' a great day can't fix. High five! ✋`},
   ];
 
   for (const messageToCheck of messagesToCheck) {
@@ -144,8 +203,6 @@ client.on('message', async message => {
     }
   }
 });
-
-
 
 
 const riddles = [
@@ -249,8 +306,7 @@ client.on('message', message => {
 
 
 
-
-client.login("");
+client.login("Token here");
 //client.login(process.env.Token);
 client.on('ready', () => {
 console.log(`Key is accepted now running the bot!`);
