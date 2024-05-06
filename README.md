@@ -17,6 +17,10 @@ And follow the steps to make a bot.
 # Authors
 * https://github.com/Eniti-Codes
 
+# Try it Out!
+• These bots are currently under development and may not be available 24/7. Feel free to invite one to your server to explore its functionalities. If the bot doesn't suit your needs, you can easily remove it by clicking on the bot's profile picture and selecting "Kick."
+Invite Here at https://discord.com/api/oauth2/authorize?client_id=1086812779744333895&permissions=275079507008&scope=bot
+
 # Additional Notes
 * You'll need the "Manage Server" permission to add Dad-bot to your Discord server.
 For more information on creating Discord bots, refer to the official Discord.js documentation: https://discordjs.guide/
