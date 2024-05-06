@@ -6,62 +6,90 @@ client.on('ready', () => {
 });
 
 
-
-
-let isSharedFunctionalityEnabled = false; // Now disabled by default
+// This allows pinging for commands! Module
+let isPingCommandEnabled = true; // Ping commands enabled by default
 
 client.on('message', async (message) => {
   if (message.author.bot) return;
 
-  // Check for enable/disable commands (adjust prefix as needed)
-  if (message.content.startsWith(',enable')) {
-    isSharedFunctionalityEnabled = true;
-    await message.channel.send('Shared functionality enabled!');
-    return;
-  } else if (message.content.startsWith(',disable')) {
-    isSharedFunctionalityEnabled = false;
-    await message.channel.send('Shared functionality disabled!');
+  if (message.content.startsWith(',Disable ping commands')) {
+    isPingCommandEnabled = false;
+    await message.channel.send('Ping commands disabled!');
     return;
   }
 
-  // Conditionally execute shared functionality code
-  if (isSharedFunctionalityEnabled) {
-    // List of messages to check for
-    const messagesToCheck = [
-      {words: ['fuck', 'shit', 'kill', 'screw', 'dmn', 'jesus christ', 'bastard', 'whore', 'gyatt', 'circumcised','obese', 'self harm', 'suicide', 'stabbed', 'death', 'skinned', 'heart attack', 'suffocate'], reply: `Woah now, champ! Did someone forget their manners? Let's clean up the language a bit, shall we?`},
-      {words: ['slut', 'meesex', 'pussy hot', 'rizz', 'sigma', 'mewing', 'wick the dick', 'shitfire', 'cuntuccino', 'fatty', 'fat', 'dead', 'stroke'], reply: `Woah now, champ! Did someone forget their manners? Let's clean up the language a bit, shall we?`},
-      {words: ['farther gamer', 'justin', 'alex', 'trinity','whale', 'freak', 'hoe', 'burned', 'inhumane', 'buried', 'rot', 'hell'], reply: `Woah now, champ! Did someone forget their manners? Let's clean up the language a bit, shall we?`},
-      {words: ['xd'], reply: '🤣'},
-      {words: ['oops'], reply: `I don't know what happened either!`},
-      {words: ['sorry'], reply: 'No worries champ!'},
-      {words: ['goodnight'], reply: 'Sleep tight and sweet dreams! 🌙'},
-      {words: ['hug'], reply: 'Sending you a virtual hug! 🤗'},
-      {words: ['please'], reply: `No champ you can't have it`},
-      {words: ['website'], reply: `https://links.net/`},
-      {words: ['grammar'], reply: `Here's your grammy lesson kids! https://www.grammarly.com/`},
-      {words: ['eepy'], reply: `Are you tired? Do you want a bedtime story champ?`},
-      // Add more message-reply pairs here
-    ];
-
-    for (const messageToCheck of messagesToCheck) {
-      if (
-        messageToCheck.words.some(
-          (word) => message.content.toLowerCase().includes(word)
-        ) &&
-        (Date.now() - lastReplyTime) > 10000
-      ) {
-        await message.reply(messageToCheck.reply);
-        lastReplyTime = Date.now();
-        break;
-      }
+  // Respond to pings only if enabled
+  if (isPingCommandEnabled && message.mentions.users.has(client.user.id)) {
+      message.reply(`**Hi I'm Dad and here are my commands!**
+      __1__. __,dad__ - "This will give you a dad joke"
+      __2__. __,info__ - "information if you didn't know what it was"
+      __3__ __,dadpuzzle__ - "You can solve a dad puzzle"
+      __5__ __,enable__ - "activates shared functionality"
+      __6__ __,disable__ - "deactivates shared functionality"
+      **My prefix is ,**`)
+      return
     }
-  }
-});
+      });
+    
+    // Keep track of last reply time to avoid spamming
+    let lastReplyTime = 0;
+
+    // Message responses to Bad words! Module
+    client.on('message', async message => {
+      if (message.author.bot) return;
+  
+      const messageToCheck = [
+        {words: ['ass', 'shut', 'cunt', 'piss', 'bullshit', 'sex', 'pussy', 'dick', 'cock', 'kill yourself', 'bitch', 'motherfucking', 'die', 'faggot','nazis', 'dildos'], 
+        replies: [`Hey now, let\'s keep it clean in here!`, `One more time like that, and there might be consequences!`, `Woah now, champ! Did someone forget their manners? Let's clean up the language a bit, shall we?`, `Careful with the language, kiddo. Let's set a good example for everyone.`, `This behavior is unacceptable!`] },
+      ];
+  
+      for (const messageData of messageToCheck) {  // Corrected variable name
+          if (messageData.words.some(word => message.content.toLowerCase().includes(word)) &&
+              (Date.now() - lastReplyTime) > 10000) {
+              const randomReplyIndex = Math.floor(Math.random() * messageData.replies.length);  // Select a random reply
+              const randomReply = messageData.replies[randomReplyIndex];
+              await message.reply(randomReply);
+              lastReplyTime = Date.now();
+              break;  // Exit the loop after a reply is sent
+          }
+      }
+  });
 
 
 
+    // Message responses! Module
+    client.on('message', async message => {
+      if (message.author.bot) return;
+    
+      // List of messages to check for
+      const messagesToCheck = [
+        {words: ['true dad'], reply: 'Sorry but I\'m the true Dad!'},
+        {words: ['lol'], reply: '🤣'},
+        {words: ['cat'], reply: 'ᓚᘏᗢ'},
+        {words: ['ty', 'thank you'], reply: 'You\'re welcome!'},
+        {words: ['brb'], reply: 'Take your time!'},
+        {words: ['rip'], reply: 'You made an impact on our lives, and we\'ll always remember you. Rest in peace.'},
+        {words: ['positive'], reply: 'I\'m always happy to keep it a nice and positive space!'},
+        {words: ['howdy'], reply: 'Howdy!'},
+        {words: [`happy father's day`], reply: `Thank you I am a great father aren't I!`},
+        {words: ['monkey'], reply: '🐵'},
+        {words: ['farther gamer'], reply: `If you mention Pinocchio nose one more time, he's going to sniff you up!!`},
+        {words: ['shot', 'shoot'], reply: `Bud, you don't even know how to shoot a gun! You shouldn't be talking like that!`},
+      ];
+    
+      for (const messageToCheck of messagesToCheck) {
+        if (messageToCheck.words.some(word => message.content.toLowerCase().includes(word)) &&
+            (Date.now() - lastReplyTime) > 10000) {
+          await message.reply(messageToCheck.reply);
+          lastReplyTime = Date.now();
+          break;
+        }
+      }
+    });
 
 
+
+// Information module
 client.on('message', message => {
   // Here is where you need to code
  if(message.content == ",info") {
@@ -76,36 +104,9 @@ Both Hazel Mom and Daniel Dad are open-source bots, meaning their code is public
 Feel free to invite them to your server and discover the fun they bring! You can invite them by clicking on their profile picture and selecting "Add to Server".`);
  }
 
-  if(message.content == ",responses") {
-    message.channel.send(`list of words I will respond to!
-    __1__ __shut ass ####__
-    __2__ __true dad__
-    __3__ __lol__
-    __4__ __cat__
-    __5__ __ty__
-    __6__ __brb__
-    __7__ __rip__
-    __8__ __positive__
-    __9__ __howdy__
-    __10__ __happy father's day__`);
-  }
+  
 
-  if(message.content == ",answers") {
-    message.channel.send(`Here are the riddle answers!
-    __1__ __A doc-tor__
-    __2__ __To get to the other slide__
-    __3__ __A dad-ician__
-    __4__ __Clock__
-    __5__ __Chatting__
-    __6__ __Discord__
-    __7__ __Roles__
-    __8__ __To get to the otter side__
-    __9__ __A road__
-    __10__ __Time__
-    __11__ __A Map__
-    __12__ __A River__`);
-  }
-
+// Jokes module
   if(message.content === `,dad`){
   const advices = [
   'So I scheduled you a dentist appointment for tooth hurty!',
@@ -152,59 +153,13 @@ var randomElement = advices[randomIndex];
   }
     });
 
-//Selection
-client.on('message', message => {
-  if (message.mentions.users.has(client.user.id) && !message.author.bot) {
-  message.reply(`**Hi I'm Dad and here are my commands!**
-  __1__. __,dad__ - "This will give you a dad joke"
-  __2__. __,info__ - "information if you didn't know what it was"
-  __3__ __,dadpuzzle__ - "You can solve a dad puzzle"
-  __4__ __,responses__ - "list of all the words I will respond to"
-  __5__ __,enable__ - "activates shared functionality"
-  __6__ __,disable__ - "deactivates shared functionality"
-  **My prefix is ,**`)
-  return
-}
-  });
-
-// Keep track of last reply time to avoid spamming
-let lastReplyTime = 0;
-
-client.on('message', async message => {
-  if (message.author.bot) return;
-
-  // List of messages to check for
-  const messagesToCheck = [
-    {words: ['dick', 'cock', 'kill yourself', 'bitch', 'motherfucking', 'die'], reply: 'One more time like that, and there might be consequences!'},
-    {words: ['ass', 'shut', 'cunt', 'piss', 'bullshit', 'sex'], reply: 'Hey now, let\'s keep it clean in here!'},
-    {words: ['true dad'], reply: 'Sorry but I\'m the true Dad!'},
-    {words: ['lol'], reply: '🤣'},
-    {words: ['cat'], reply: 'ᓚᘏᗢ'},
-    {words: ['ty', 'thank you'], reply: 'You\'re welcome!'},
-    {words: ['brb'], reply: 'Take your time!'},
-    {words: ['rip'], reply: 'You made an impact on our lives, and we\'ll always remember you. Rest in peace.'},
-    {words: ['positive'], reply: 'I\'m always happy to keep it a nice and positive space!'},
-    {words: ['howdy'], reply: 'Howdy!'},
-    {words: [`happy father's day`], reply: `Thank you I am a great father aren't I!`},
-    {words: ['monkey'], reply: '🐵'},
-    {words: ['farther gamer'], reply: `If you mention Pinocchio nose one more time, he's going to sniff you up!!`},
-    {words: ['shot', 'shoot'], reply: `Bud, you don't even know how to shoot a gun! You shouldn't be talking like that!`},
-    {words: ['dad!'], reply: `Yes champ!`},
-    {words: ['awful'], reply: `Hey there champ, chin up! What's got you feeling down today?`},
-    {words: ['great'], reply: `Fantastic news! There's nothin' a great day can't fix. High five! ✋`},
-  ];
-
-  for (const messageToCheck of messagesToCheck) {
-    if (messageToCheck.words.some(word => message.content.toLowerCase().includes(word)) &&
-        (Date.now() - lastReplyTime) > 10000) {
-      await message.reply(messageToCheck.reply);
-      lastReplyTime = Date.now();
-      break;
-    }
-  }
-});
 
 
+
+
+
+
+// Riddle module
 const riddles = [
   {
     question: "What do you call a dad who's also a doctor?",
@@ -306,7 +261,81 @@ client.on('message', message => {
 
 
 
-client.login("Token here");
+// Shared functionality module
+let isSharedFunctionalityEnabled = false; // Now disabled by default
+
+client.on('message', async (message) => {
+  if (message.author.bot) return;
+
+  // Check for enable/disable commands (adjust prefix as needed)
+  if (message.content.startsWith(',enable')) {
+    isSharedFunctionalityEnabled = true;
+    await message.channel.send('**Shared functionality enabled!**\n\nPlease be aware that enabling shared functionality might result in both bots responding to the same messages, potentially causing excessive responses. Consider separating the bots into different channels for optimal performance if you experience spamming.');
+    return;
+  } else if (message.content.startsWith(',disable')) {
+    isSharedFunctionalityEnabled = false;
+    await message.channel.send('Shared functionality disabled!');
+    return;
+  }
+
+  // Conditionally execute shared functionality code
+  if (isSharedFunctionalityEnabled) {
+    // List of messages to check for
+    const messagesToCheck = [
+      {words: ['fuck', 'shit', 'kill', 'screw', 'dmn', 'jesus christ', 'bastard', 'whore', 'gyatt', 'circumcised','obese', 'self harm', 'suicide', 'stabbed', 'death', 'skinned', 'heart attack', 'suffocate'], reply: `Woah now, champ! Did someone forget their manners? Let's clean up the language a bit, shall we?`},
+      {words: ['slut', 'meesex', 'pussy hot', 'rizz', 'sigma', 'mewing', 'wick the dick', 'shitfire', 'cuntuccino', 'fatty', 'fat', 'dead', 'stroke'], reply: `Woah now, champ! Did someone forget their manners? Let's clean up the language a bit, shall we?`},
+      {words: ['farther gamer', 'justin', 'alex', 'trinity','whale', 'freak', 'hoe', 'burned', 'inhumane', 'buried', 'rot', 'hell'], reply: `Woah now, champ! Did someone forget their manners? Let's clean up the language a bit, shall we?`},
+      {words: ['xd'], reply: '🤣'},
+      {words: ['oops'], reply: `I don't know what happened either!`},
+      {words: ['sorry'], reply: 'No worries champ!'},
+      {words: ['goodnight'], reply: 'Sleep tight and sweet dreams! 🌙'},
+      {words: ['hug'], reply: 'Sending you a virtual hug! 🤗'},
+      {words: ['please'], reply: `No champ you can't have it`},
+      {words: ['website'], reply: `https://links.net/`},
+      {words: ['grammar'], reply: `Here's your grammy lesson kids! https://www.grammarly.com/`},
+      {words: ['eepy'], reply: `Are you tired? Do you want a bedtime story champ?`},
+      {words: ['awful', 'worst'], reply: `Hey there champ, chin up! What's got you feeling down today?`},
+      {words: ['great', 'amazing'], reply: `Fantastic news! There's nothin' a great day can't fix. High five! ✋`},
+      {words: ['dad!'], reply: `Yes champ!`},
+      // Add more message-reply pairs here
+    ];
+
+    for (const messageToCheck of messagesToCheck) {
+      if (
+        messageToCheck.words.some(
+          (word) => message.content.toLowerCase().includes(word)
+        ) &&
+        (Date.now() - lastReplyTime) > 10000
+      ) {
+        await message.reply(messageToCheck.reply);
+        lastReplyTime = Date.now();
+        break;
+      }
+    }
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//new
+
+
+
+client.login("Your token here from Discord!");
 //client.login(process.env.Token);
 client.on('ready', () => {
 console.log(`Key is accepted now running the bot!`);
