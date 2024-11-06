@@ -8,7 +8,7 @@ Are you looking for a funny, entertaining, and easy to host bot? Well you found 
 *  Make sure you have vs code installed and node.js and JavaScript V11.4.2.
 
 ### Installing.
-* Clone the Repository: at https://github.com/Streamer-devs/Dad-bot.git
+* Clone the Repository: at https://github.com/Eniti-Codes/Dad-bot.git
 * Open up the index folder with VS code.
 * Replace Your token here from Discord! With your bot token. To obtain a token go to https://discord.com/developers/applications 
 And follow the steps to make a bot.
