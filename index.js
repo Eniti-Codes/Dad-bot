@@ -26,6 +26,7 @@ client.on('message', async (message) => {
       __3__ __,dadpuzzle__ - "You can solve a dad puzzle"
       __5__ __,enable__ - "activates shared functionality"
       __6__ __,disable__ - "deactivates shared functionality"
+      __7__ __,Disable ping commands__ - "This is so you can disable ping command. So Hazel Mom and Dad Bot don't both respond!"
       **My prefix is ,**`)
       return
     }
@@ -136,9 +137,14 @@ Feel free to invite them to your server and discover the fun they bring! You can
     `When does a regular joke become a “dad joke?” When it becomes apparent.`,
     `I wouldn't buy anything with velcro. It's a total rip-off.`,
     `Why is The Rock moving? because it's rocking roll.`,
-    `Have you ever tried to eat a clock?
-It's very time-consuming!`
-    //27
+    `My ex-wife keeps missing me, but her aim is getting better.`,
+    `There's no I in denial.`,
+    `Hey dude, guess what I Saw yesterday, everyone that I looked at.`,
+    `Dorian a magic act for his final feat a Mexican man counted uno dos And vanished without a trace.`,
+    `What is Harry Potter's favorite method for getting down at hill? It's actually Walking, JK Rowling.`,
+    `Have you ever tried to eat a clock? It's very time-consuming!`,
+    `If two vegans had an argument, is it still beef?`
+    //33
 ];
   // get a random number based on the array's length
 var randomIndex = Math.floor(Math.random() * advices.length);
@@ -152,12 +158,6 @@ var randomElement = advices[randomIndex];
     message.delete();
   }
     });
-
-
-
-
-
-
 
 // Riddle module
 const riddles = [
@@ -258,9 +258,6 @@ client.on('message', message => {
   }
 }); 
 
-
-
-
 // Shared functionality module
 let isSharedFunctionalityEnabled = false; // Now disabled by default
 
@@ -314,25 +311,6 @@ client.on('message', async (message) => {
     }
   }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//new
-
 
 
 client.login("Your token here from Discord!");
